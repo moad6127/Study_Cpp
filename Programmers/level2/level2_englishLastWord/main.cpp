@@ -1,6 +1,9 @@
 #include <string>
 #include <vector>
 #include <unordered_set>
+#include <bits/stdc++.h>
+
+
 using namespace std;
 
 vector<int> solution(int n, vector<string> words) {
