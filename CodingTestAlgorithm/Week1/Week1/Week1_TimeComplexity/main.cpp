@@ -39,6 +39,10 @@ void solve(int N) {
 	}
 	cout << a << '\n';
 	cout << cnt << endl;
+
+	//log(n+1)의 복잡도를 가지고
+	//big-o표기법으로 O(logn)을 가진다
+
 }
 
 
