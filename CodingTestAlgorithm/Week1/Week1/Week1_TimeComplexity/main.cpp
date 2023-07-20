@@ -45,11 +45,28 @@ void solve(int N) {
 
 }
 
+void solve_2(int N) {
+	cnt++;
+	cout << cnt << '\n';
+	if (N == 0) return;
+	for (int i = 0; i < 3; i++) {
+		solve(N - 1);
+	}
+	return;
+
+	//재귀함수의 시간복잡도를 찾기위해서는 MainLogic에 함수호출을 곱하면 된다.
+	//위의 함수의 MainLogic은 Cnt를 더하고 출력하는 로직으로 O(1)의 복잡도를 가진다
+	// 호출횟수는 3의 제곱만큼 더해진다, 즉 시간복잡도는 1/2(3^n - 1)의 복잡도를 가지고
+	// Big-O로 표기하면 O(3^n)이 된다.
+	//
+}
+
+
 
 
 int main() {
 	cin >> n;
-	solve(n);
+	solve_2(n);
 }
 
 
