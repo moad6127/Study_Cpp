@@ -1,7 +1,4 @@
-#include <bits/stdc++.h>
-
-using namespace std;
-
+/*
 int main()
 {
 
@@ -27,4 +24,28 @@ int main()
 	}
 	cout << 1;
 	return 0;
+}
+
+*/
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+
+int main()
+{
+	string input{}, temp{};
+	cin >> input;
+	temp = input;
+
+	reverse(input.begin(), input.end());
+	if (temp == input)
+	{
+		cout << 1;
+	}
+	else
+	{
+		cout << 0;
+	}
 }
