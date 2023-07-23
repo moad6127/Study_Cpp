@@ -12,21 +12,26 @@ int main()
 	string frontS;
 	string backS;
 	frontS = check.substr(0, check.find('*'));
-	backS = check.substr(check.find("*") + 1, check.back());
-	reverse(backS.begin(), backS.end());
+	backS = check.substr(check.find("*") + 1);
 	for (int i = 0; i < num; i++)
 	{
-		string s , temp;
+		string s;
 		cin >> s;
-		temp = s;
-		reverse(s.begin(), s.end());
-		if (temp.find(frontS) == 0 && s.find(backS) == 0)
+
+		if (frontS.size() + backS.size() > s.size())
 		{
-			cout << "DA" << endl;
+			cout << "NE" << endl;
 		}
 		else
 		{
-			cout << "NE" << endl;
+			if (frontS == s.substr(0, frontS.size()) && backS == s.substr(s.size() - backS.size()))
+			{
+				cout << "DA" << endl;
+			}
+			else
+			{
+				cout << "NE" << endl;
+			}
 		}
 	}
 }
