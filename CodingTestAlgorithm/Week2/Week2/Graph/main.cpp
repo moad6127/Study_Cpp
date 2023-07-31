@@ -62,5 +62,49 @@
 // 
 // a[3][5] = 1
 // 
-// 
-//
+// ¹®Á¦
+
+#include <bits/stdc++.h>
+
+using namespace std;
+bool a[10][10];
+bool visit[10];
+
+void Visit(int start)
+{
+
+	visit[start] = 1;
+	cout << start << endl;
+	for (int i = 0; i < 10; i++)
+	{
+		if (visit[i])
+		{
+			continue;
+		}
+		if (a[start][i])
+		{
+			Visit(i);
+		}
+	}
+}
+int main()
+{
+	a[1][2] = 1;
+	a[2][1] = 1;
+	a[1][3] = 1;
+	a[3][1] = 1;
+	a[3][4] = 1;
+	a[4][3] = 1;
+
+	for (int i = 0; i < 10; i++)
+	{
+		for (int j = 0; j < 10; j++)
+		{
+			if (a[i][j] && !visit[i])
+			{
+				Visit(i);
+			}
+		}
+	}
+
+}
