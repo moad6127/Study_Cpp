@@ -168,49 +168,79 @@
 // 
 //
 
-#include <bits/stdc++.h>
-
-
-using namespace std;
-
-const int V{ 10 };
-vector<int> adj[V];
-bool visit[V];
-
-void Func(int start)
-{
-	visit[start] = true;
-	cout << start << endl;
-
-	for (int i = 0; i < adj[start].size(); i++)
-	{
-		if (visit[start])
-		{
-			continue;
-		}
-
-		Func(adj[start][i]);
-	}
-}
-
-int main()
-{
-
-	adj[1].push_back(2);
-	adj[1].push_back(3);
-
-	adj[2].push_back(1);
-	
-	adj[3].push_back(1);
-	adj[3].push_back(4);
-
-	adj[4].push_back(3);
-
-	for (int i = 0; i < V; i++)
-	{
-		if (adj[i].size() && !visit[i])
-		{
-			Func(i);
-		}
-	}
-}
+//#include <bits/stdc++.h>
+//
+//
+//using namespace std;
+//
+//const int V{ 10 };
+//vector<int> adj[V];
+//bool visit[V];
+//
+//void Func(int start)
+//{
+//	visit[start] = true;
+//	cout << start << endl;
+//
+//	for (int i = 0; i < adj[start].size(); i++)
+//	{
+//		if (visit[start])
+//		{
+//			continue;
+//		}
+//
+//		Func(adj[start][i]);
+//	}
+//}
+//
+//int main()
+//{
+//
+//	adj[1].push_back(2);
+//	adj[1].push_back(3);
+//
+//	adj[2].push_back(1);
+//	
+//	adj[3].push_back(1);
+//	adj[3].push_back(4);
+//
+//	adj[4].push_back(3);
+//
+//	for (int i = 0; i < V; i++)
+//	{
+//		if (adj[i].size() && !visit[i])
+//		{
+//			Func(i);
+//		}
+//	}
+//}
+//
+// 
+// 인접 행렬과 인접리스트의 차이
+// 
+// 공간 복잡도
+// 인접 행렬 = O(V^2)
+// 인접 리스트 = O(V + E)
+// 
+// 시간 복잡도
+// 
+// 간선 한개 찾기
+// 
+// 인접행렬 = O(1)
+// 인접 리스트 = O(V)
+// 
+// 인접 행렬은 바로 찾을수 있다.
+// 
+//
+// 모든 간선을 찾을때의 시간복잡도
+// 
+// 인접행렬= O(V^2)
+// 인접 리스트 = O(V+E)
+// 
+// 따라서 그래프가 희소할때는 인접리스트, 조밀할때는 인접 행렬이 좋다
+// 
+// 
+// 
+// 보통은 인접 리스트를 사용하지만 테스트에서 행렬로 주어질경우 그대로 푸는게 좋다.
+// 
+//
