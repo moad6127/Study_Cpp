@@ -64,47 +64,153 @@
 // 
 // 문제
 
+//
+//
+//#include <bits/stdc++.h>
+//
+//using namespace std;
+//bool a[10][10];
+//bool visit[10];
+//
+//void Visit(int start)
+//{
+//
+//	visit[start] = 1;
+//	cout << start << endl;
+//	for (int i = 0; i < 10; i++)
+//	{
+//		if (visit[i])
+//		{
+//			continue;
+//		}
+//		if (a[start][i])
+//		{
+//			Visit(i);
+//		}
+//	}
+//}
+//int main()
+//{
+//	a[1][2] = 1;
+//	a[2][1] = 1;
+//	a[1][3] = 1;
+//	a[3][1] = 1;
+//	a[3][4] = 1;
+//	a[4][3] = 1;
+//
+//	for (int i = 0; i < 10; i++)
+//	{
+//		for (int j = 0; j < 10; j++)
+//		{
+//			if (a[i][j] && !visit[i])
+//			{
+//				Visit(i);
+//			}
+//		}
+//	}
+//
+//}
+
+
+//
+//
+// 인접 리스트
+// 
+// 각정점마다 연결된 리스트를 만든다.
+// 
+// ex)
+// 
+// #include<bits/stdc++.h>
+//using namespace std;
+//const int V = 4;
+//vector<int> adj[V];
+//int main() {
+//    adj[0].push_back(1);
+//    adj[0].push_back(2);
+//    adj[0].push_back(3);
+//
+//    adj[1].push_back(0);
+//    adj[1].push_back(2);
+//
+//    adj[2].push_back(0);
+//    adj[2].push_back(1);
+//
+//    adj[3].push_back(0);
+//
+//    for (int i = 0; i < 4; i++) {
+//        cout << i << " :: ";
+//        for (int there : adj[i]) {
+//            cout << there << " ";
+//        }
+//        cout << '\n';
+//    }
+//    // 이렇게도 할 수 있다.
+//    for (int i = 0; i < 4; i++) {
+//        cout << i << " :: ";
+//        for (int j = 0; j < adj[i].size(); j++) {
+//            cout << adj[i][j] << " ";
+//        }
+//        cout << '\n';
+//    }
+//
+//}
+/*
+0 :: 1 2 3
+1 :: 0 2
+2 :: 0 1
+3 :: 0
+*/
+//[출처][알고리즘 강의] 2주차.그래프이론, 인접행렬, 인접리스트, DFS, BFS, 트리순회 | 작성자 큰돌
+// 
+//
+//
+// 
+// 
+//
+
 #include <bits/stdc++.h>
 
+
 using namespace std;
-bool a[10][10];
-bool visit[10];
 
-void Visit(int start)
+const int V{ 10 };
+vector<int> adj[V];
+bool visit[V];
+
+void Func(int start)
 {
-
-	visit[start] = 1;
+	visit[start] = true;
 	cout << start << endl;
-	for (int i = 0; i < 10; i++)
+
+	for (int i = 0; i < adj[start].size(); i++)
 	{
-		if (visit[i])
+		if (visit[start])
 		{
 			continue;
 		}
-		if (a[start][i])
-		{
-			Visit(i);
-		}
+
+		Func(adj[start][i]);
 	}
 }
+
 int main()
 {
-	a[1][2] = 1;
-	a[2][1] = 1;
-	a[1][3] = 1;
-	a[3][1] = 1;
-	a[3][4] = 1;
-	a[4][3] = 1;
 
-	for (int i = 0; i < 10; i++)
+	adj[1].push_back(2);
+	adj[1].push_back(3);
+
+	adj[2].push_back(1);
+	
+	adj[3].push_back(1);
+	adj[3].push_back(4);
+
+	adj[4].push_back(3);
+
+	for (int i = 0; i < V; i++)
 	{
-		for (int j = 0; j < 10; j++)
+		if (adj[i].size() && !visit[i])
 		{
-			if (a[i][j] && !visit[i])
-			{
-				Visit(i);
-			}
+			Func(i);
 		}
 	}
-
 }
