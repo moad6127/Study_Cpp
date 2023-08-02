@@ -285,45 +285,55 @@
 //	0 1 1
 // 
 //
-#include <bits/stdc++.h>
-using namespace std;
-const int dy[] = { -1,0,1,0 };
-const int dx[] = { 0,1,0,-1 };
-
-bool visit[3][3];
-bool testMap[3][3];
-
-void Func(int x, int y)
-{
-	visit[x][y] = true;
-	cout << x << " : " << y << '\n';
-	for (int i = 0; i < 4; i++)
-	{
-		int ny = y + dy[i];
-		int nx = x + dx[i];
-		if (ny < 0 || ny >= 3 || nx < 0 || nx >= 3)
-		{
-			continue;
-		}
-
-		if (testMap[ny][nx] && !visit[ny][nx])
-		{
-			Func(ny,nx);
-		}
-	}
-}
-
-int main()
-{
-	testMap[0][0] = 1;
-	testMap[0][1] = 0;
-	testMap[0][2] = 1;
-	testMap[1][0] = 1;
-	testMap[1][1] = 0;
-	testMap[1][2] = 1;
-	testMap[2][0] = 0;
-	testMap[2][1] = 1;
-	testMap[2][2] = 1;
-
-	Func(0, 0);
-}
+//#include <bits/stdc++.h>
+//using namespace std;
+//const int dy[] = { -1,0,1,0 };
+//const int dx[] = { 0,1,0,-1 };
+//
+//bool visit[3][3];
+//bool testMap[3][3];
+//
+//void Func(int x, int y)
+//{
+//	visit[x][y] = true;
+//	cout << x << " : " << y << '\n';
+//	for (int i = 0; i < 4; i++)
+//	{
+//		int ny = y + dy[i];
+//		int nx = x + dx[i];
+//		if (ny < 0 || ny >= 3 || nx < 0 || nx >= 3)
+//		{
+//			continue;
+//		}
+//
+//		if (testMap[ny][nx] && !visit[ny][nx])
+//		{
+//			Func(ny,nx);
+//		}
+//	}
+//}
+//
+//int main()
+//{
+//	testMap[0][0] = 1;
+//	testMap[0][1] = 0;
+//	testMap[0][2] = 1;
+//	testMap[1][0] = 1;
+//	testMap[1][1] = 0;
+//	testMap[1][2] = 1;
+//	testMap[2][0] = 0;
+//	testMap[2][1] = 1;
+//	testMap[2][2] = 1;
+//
+//	Func(0, 0);
+//}
+//
+// 
+// 연결된 컴포넌트
+// 
+// 연결된 하위 그래프가 있는 그래프가 있고 각각 하나의 덩어리가 있는것과 같다.
+// 각각의 하위그래프는 하위그래프의 정점들은 연결되어 있다.
+// 
+// 이러한 연결된 컴포넌트 끼리 묶여있는것을 풀르드필(floodfill)이라고 한다.
+// 
+//
