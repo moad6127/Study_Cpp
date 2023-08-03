@@ -336,4 +336,134 @@
 // 
 // 이러한 연결된 컴포넌트 끼리 묶여있는것을 풀르드필(floodfill)이라고 한다.
 // 
+// 
+// 
+// 
+// 
+// DFS(깊이 우선 탐색)
+// 
+// 그래프를 탐색할때 사용하는 알고리즘으로 가장 깊이있는 노드까지 탐색한후 돌아와서 탐색한다.
+// 방문한 노드는 다시 방문하지 않는다.
+// 재귀적으로 방문한다.
+// 
+// 수도코드
+// 
+// DFS(u,adj)
+// 
+// u->visit = true
+// for v->adj[u]
+// 
+// if(v->visit == false)
+// DFS(v,adj)
+
+/*
+#include<bits/stdc++.h>
+using namespace std;
+
+const int n = 6;
+vector<int> adj[n];
+int visited[n];
+
+void dfs(int u) {
+    visited[u] = 1;
+    cout << u << "\n";
+    for (int v : adj[u]) {
+        if (visited[v] == 0) {
+            dfs(v);
+        }
+    }
+    cout << u << "로부터 시작된 함수가 종료되었습니다.\n";
+    return;
+}
+int main() {
+    adj[1].push_back(2);
+    adj[1].push_back(3);
+    adj[2].push_back(4);
+    adj[4].push_back(2);
+    adj[2].push_back(5);
+    dfs(1);
+}
+
+1
+2
+4
+4로부터 시작된 함수가 종료되었습니다.
+5
+5로부터 시작된 함수가 종료되었습니다.
+2로부터 시작된 함수가 종료되었습니다.
+3
+3로부터 시작된 함수가 종료되었습니다.
+1로부터 시작된 함수가 종료되었습니다.
+*/
+//[출처][알고리즘 강의] 2주차.그래프이론, 인접행렬, 인접리스트, DFS, BFS, 트리순회 | 작성자 큰돌
+
+
+//
+// 
+//문제 풀이
+// 
+//
+
+/*
+#include <bits/stdc++.h>
+
+
+using namespace std;
+
+int N, M;
+const int dy[] = { -1,0,1,0 };
+const int dx[] = { 0,1,0,-1 };
+bool visited[100][100];
+
+void dfs(vector<vector<int>>& a,int y,int x)
+{
+    visited[y][x] = true;
+    for (int i = 0; i < 4; i++)
+    {
+        int ny = y + dy[i];
+        int nx = x + dx[i];
+
+        if (ny <0 || ny >=N || nx <0 || nx>=M)
+        {
+            continue;
+        }
+        if (!visited[ny][nx] && a[ny][nx])
+        {
+            dfs(a, ny, nx);
+        }
+    }
+}
+
+int main()
+{
+    cin >> N >> M;
+    vector<vector<int>> a(N, vector<int>(M, 0));
+
+    int result{};
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < M; j++)
+        {
+            cin >> a[i][j];
+        }
+    }
+
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < M; j++)
+        {
+            if (!visited[i][j] && a[i][j])
+            {
+                dfs(a, i, j);
+                result++;
+            }
+        }
+    }
+    cout << result;
+
+    return 0;
+}
+*/
+//
+//
 //
