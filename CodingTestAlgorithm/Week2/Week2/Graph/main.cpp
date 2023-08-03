@@ -466,4 +466,116 @@ int main()
 */
 //
 //
+// BFS 너비 우선 탐색
+// 
+// 정점에서 시작해서 다음 깊이의 정점으로 가기전에 현재 레벨을 모두 탐색하면서 진행하는 알고리즘이다
+// 
+// BFS는 Queue를 사용해서 알고리즘을 만든다
+// 
+// 
 //
+
+/*
+#include<bits/stdc++.h>
+using namespace std;
+vector<int> adj[100];
+int visited[100];
+int nodeList[] = { 10, 12, 14, 16, 18, 20, 22, 24 };
+void bfs(int here) {
+    queue<int> q;
+    visited[here] = 1;
+    q.push(here);
+    while (q.size()) {
+        int here = q.front(); q.pop();
+        for (int there : adj[here]) {
+            if (visited[there]) continue;
+            visited[there] = visited[here] + 1;
+            q.push(there);
+        }
+    }
+}
+int main() {
+    adj[10].push_back(12);
+    adj[10].push_back(14);
+    adj[10].push_back(16);
+
+    adj[12].push_back(18);
+    adj[12].push_back(20);
+
+
+    adj[20].push_back(22);
+    adj[20].push_back(24);
+    bfs(10);
+    for (int i : nodeList) {
+        cout << i << " : " << visited[i] << '\n';
+    }
+    cout << "10번으로부터 24번까지 최단거리는 : " << visited[24] - 1 << '\n';
+    return 0;
+}
+
+10 : 1
+12 : 2
+14 : 2
+16 : 2
+18 : 3
+20 : 3
+22 : 4
+24 : 4
+10번으로부터 24번까지 최단거리는 : 3
+
+[출처][알고리즘 강의] 2주차.그래프이론, 인접행렬, 인접리스트, DFS, BFS, 트리순회 | 작성자 큰돌
+
+*/
+
+//
+//
+//문제
+
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    int N{}, M{};
+    int startY{}, startX{}, endY{}, endX{};
+    const int dy[] = { -1,0,1,0 };
+    const int dx[] = { 0,1,0,-1 };
+
+    cin >> N >> M >> startY >> startX >> endY >> endX;
+
+    vector<vector<int>> a(N, vector<int>(M, 0));
+    vector<vector<int>> visited(N, vector<int>(M, 0));
+    visited[startY][startX] = 1;
+    queue<pair<int, int>> q;
+    q.push({ startY,startX });
+    for (int i = 0; i < N; i++)
+    {
+        for (int j = 0; j < M; j++)
+        {
+            cin >> a[i][j];
+        }
+    }
+     
+    while (q.size())
+    {
+        pair<int, int> nowPosition = q.front();
+        q.pop();
+        for (int i = 0; i < 4; i++)
+        {
+            int ny = nowPosition.first + dy[i];
+            int nx = nowPosition.second + dx[i];
+
+            if (ny < 0 || ny >= N || nx < 0 || nx >= M)
+            {
+                continue;
+            }
+            if (!visited[ny][nx] && a[ny][nx])
+            {
+                visited[ny][nx] = visited[nowPosition.first][nowPosition.second] + 1;
+                q.push({ ny,nx });
+            }
+        }
+    }
+    cout << visited[endY][endX];
+}
