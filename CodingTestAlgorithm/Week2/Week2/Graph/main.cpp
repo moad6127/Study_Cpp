@@ -592,4 +592,49 @@ int main()
 // BFS 는 메모리를 더사용하고 가중치가 같은 그래프에서 최단거리 알고리즘을 사용할수 있다. 코드가 더 길다.
 // 
 // 
+// 
+// 
+// 트리 순회
+// 
+// 
+// 
+// 후회 순회
+// 후위순회(postorder traversal)는 자식 노드를 먼저 방문하고 자신의 노드를 방문하는 것을 말한다
+// 
+// 수도 코드
+// postorder( node )
+//  if (node.visited == false)
+//  postorder(node->left)
+//  postorder(node->right)
+//  node.visited = true
+//[출처][알고리즘 강의] 2주차.그래프이론, 인접행렬, 인접리스트, DFS, BFS, 트리순회 | 작성자 큰돌
+// 
+// 
+// 전위 순회
+// 
+// 전위순회(preorder traversal) 는 자신의 노드를 먼저 방문하고 자식의 노드를 방문하는것을 말한다(DFS 방식을 생각하면 된다.)
+// 
+// 수도 코드
+// preorder( node )
+//  if (node.visited == false)
+//  node.visited = true
+//  preorder(node->left)
+//  preorder(node->right)
+//[출처][알고리즘 강의] 2주차.그래프이론, 인접행렬, 인접리스트, DFS, BFS, 트리순회 | 작성자 큰돌
+// 
+// 
+// 중위 순회
+// 
+// 중위순회(inorder traversal) 는 왼쪽 노드를 먼저 방문하고 자신의 노드를 방문한다음 오른쪽 노드를 방문하는것을 말한다.
+// 
+// 수도 코드
+// inorder( node )
+//  if (node.visited == false)
+//  inorder(node->left)
+//  node.visited = true
+//  inorder(node->right)
+//[출처][알고리즘 강의] 2주차.그래프이론, 인접행렬, 인접리스트, DFS, BFS, 트리순회 | 작성자 큰돌
+// 
+// 
+// 
 //
