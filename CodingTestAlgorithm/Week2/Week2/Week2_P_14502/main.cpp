@@ -75,9 +75,11 @@ void MakeBlock(vector<vector<int>> map, int blockCount)
 		}
 	}
 }
-
 int main()
 {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
 	cin >> N >> M;
 	vector<vector<int>>a(N, vector<int>(M, 0));
 	for (int i = 0; i < N; i++)
