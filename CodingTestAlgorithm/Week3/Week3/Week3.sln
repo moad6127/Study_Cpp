@@ -5,6 +5,8 @@ VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BruteForce_backTracking", "BruteForce_backTracking\BruteForce_backTracking.vcxproj", "{AE027B16-5D75-4E0E-9CC8-5A37D143B9CB}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FullSearch_", "FullSearch_\FullSearch_.vcxproj", "{3E46F105-8ABC-455A-9B7C-1FF8756F8E4F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +23,14 @@ Global
 		{AE027B16-5D75-4E0E-9CC8-5A37D143B9CB}.Release|x64.Build.0 = Release|x64
 		{AE027B16-5D75-4E0E-9CC8-5A37D143B9CB}.Release|x86.ActiveCfg = Release|Win32
 		{AE027B16-5D75-4E0E-9CC8-5A37D143B9CB}.Release|x86.Build.0 = Release|Win32
+		{3E46F105-8ABC-455A-9B7C-1FF8756F8E4F}.Debug|x64.ActiveCfg = Debug|x64
+		{3E46F105-8ABC-455A-9B7C-1FF8756F8E4F}.Debug|x64.Build.0 = Debug|x64
+		{3E46F105-8ABC-455A-9B7C-1FF8756F8E4F}.Debug|x86.ActiveCfg = Debug|Win32
+		{3E46F105-8ABC-455A-9B7C-1FF8756F8E4F}.Debug|x86.Build.0 = Debug|Win32
+		{3E46F105-8ABC-455A-9B7C-1FF8756F8E4F}.Release|x64.ActiveCfg = Release|x64
+		{3E46F105-8ABC-455A-9B7C-1FF8756F8E4F}.Release|x64.Build.0 = Release|x64
+		{3E46F105-8ABC-455A-9B7C-1FF8756F8E4F}.Release|x86.ActiveCfg = Release|Win32
+		{3E46F105-8ABC-455A-9B7C-1FF8756F8E4F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
