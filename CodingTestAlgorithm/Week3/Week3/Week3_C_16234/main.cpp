@@ -33,7 +33,6 @@ void dfs(int y, int x)
 			v.push_back({ ny,nx });
 			sum += a[ny][nx];
 			dfs(ny, nx);
-
 		}
 	}
 }
