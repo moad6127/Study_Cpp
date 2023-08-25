@@ -25,7 +25,6 @@ int oper(char a, int b, int c)
 }
 void Func(int here, int _num)
 {
-	cout << here << " : " << _num << '\n';
 	if (here == nums.size() - 1)
 	{
 		result = max(result, _num);
