@@ -4,24 +4,31 @@
 using namespace std;
 
 int R, C;
-vector<string> a;
+char a[1504][1504];
 vector<pair<int, int>> LL;
-int visited[1504][1504];
+int visited_S[1504][1504];
+int visited_W[1504][1504];
 int result;
 const int dy[4] = { -1, 1, 0 , 0 };
 const int dx[4] = { 0 ,0 ,-1, 1 };
+int SY, SX;
+queue<pair<int, int>> SQ;
+queue<pair<int, int>> SQ_Temp;
+queue<pair<int, int>> WQ;
+queue<pair<int, int>> WQ_Temp;
 
-
-bool BSF()
+void Clear (queue<pair<int, int>>& Q)
 {
-	memset(visited, 0, sizeof(visited));
 	queue<pair<int, int>> q;
-	q.push(LL[0]);
-	visited[LL[0].first][LL[0].second] = 1;
-	while (q.size())
+	swap(Q, q);
+}
+
+bool SBFS()
+{
+	while (SQ.size())
 	{
-		pair<int, int> now = q.front();
-		q.pop();
+		pair<int,int> now = SQ.front();
+		SQ.pop();
 		for (int i = 0; i < 4; i++)
 		{
 			int ny = now.first + dy[i];
@@ -30,23 +37,54 @@ bool BSF()
 			{
 				continue;
 			}
-			if (visited[ny][nx])
+			if (visited_S[ny][nx])
+			{
+				continue;
+			}
+			visited_S[ny][nx] = 1;
+			if (a[ny][nx] == '.')
+			{
+				SQ.push({ ny,nx });
+			}
+			if (a[ny][nx] == 'X')
+			{
+				SQ_Temp.push({ ny,nx });
+			}
+			if (a[ny][nx] == 'L')
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+void WBFS()
+{
+	while (WQ.size())
+	{
+		pair<int, int> now = WQ.front();
+		WQ.pop();
+		for (int i = 0; i < 4; i++)
+		{
+			int ny = now.first + dy[i];
+			int nx = now.second + dx[i];
+			if (ny < 0 || ny >= R || nx < 0 || nx >= C)
+			{
+				continue;
+			}
+			if (visited_W[ny][nx])
 			{
 				continue;
 			}
 			if (a[ny][nx] == 'X')
 			{
-				continue;
+				WQ_Temp.push({ ny,nx });
+				visited_W[ny][nx] = 1;
+				a[ny][nx] = '.';
 			}
-			if (ny == LL[1].first && nx == LL[1].second)
-			{
-				return true;
-			}
-			visited[ny][nx] = visited[now.first][now.second] + 1;
-			q.push({ ny,nx });
 		}
 	}
-	return false;
 }
 
 int main()
@@ -55,50 +93,43 @@ int main()
 	cin.tie(NULL);
 	cout.tie(NULL);
 	cin >> R >> C;
+
 	for (int i = 0; i < R; i++)
 	{
 		string temp;
 		cin >> temp;
-		a.push_back(temp);
-		if (temp.find('L') != string::npos)
+		for (int j = 0; j < C; j++)
 		{
-			LL.push_back({ i,temp.find('L') });
-		}
-	}
-
-	while (!BSF())
-	{
-		vector<pair<int, int>> removeX;
-		for (int i = 0; i < R; i++)
-		{
-			for (int j = 0; j < C; j++)
+			a[i][j] = temp[j];
+			if (temp[j] == 'L')
 			{
-				if (a[i][j] == 'X')
-				{
-					for (int k = 0; k < 4; k++)
-					{
-						int ny = i + dy[k];
-						int nx = j + dx[k];
-						if (ny < 0 || ny >= R || nx < 0 || nx >= C)
-						{
-							continue;
-						}
-						if (a[ny][nx] == '.')
-						{
-							removeX.push_back({ i,j });
-							break;
-						}
-					}
-				}
+				SY = i;
+				SX = j;
+			}
+			if (temp[j] == '.' || temp[j] == 'L')
+			{
+				WQ.push({ i,j });
 			}
 		}
-		for (auto e : removeX)
-		{
-			a[e.first][e.second] = '.';
-		}
-		result++;
 	}
+	SQ.push({ SY,SX });
+	visited_S[SY][SX] = 1;
 
+	while (true)
+	{
+		if (SBFS())
+		{
+			break;
+		}
+		WBFS();
+		SQ = SQ_Temp;
+		WQ = WQ_Temp;
+		Clear(SQ_Temp);
+		Clear(WQ_Temp);
+
+		result++;
+
+	}
 	cout << result;
 
 	return 0;
