@@ -5,18 +5,14 @@ using namespace std;
 
 int R, C;
 char a[24][24];
+int visited[30];
 const int dy[4] = { -1, 1, 0, 0 };
 const int dx[4] = { 0,0,-1,1 };
 int result = -1;
 
-int dfs(int y, int x,set<char> check, vector<vector<int>> visited)
+void Func(int y, int x,int ret)
 {
-	auto c = check.insert(a[y][x]);
-	visited[y][x] = 1;
-	if (!c.second)
-	{
-		return check.size();
-	}
+	result = max(ret, result);
 
 	for (int i = 0; i < 4; i++)
 	{
@@ -26,13 +22,15 @@ int dfs(int y, int x,set<char> check, vector<vector<int>> visited)
 		{
 			continue;
 		}
-		if (visited[ny][nx])
+		int next = a[ny][nx] - 'A';
+		if (visited[next] == 0)
 		{
-			continue;
+			visited[next] = 1;
+			Func(ny, nx, ret + 1);
+			visited[next] = 0;
 		}
-		result = max(result, dfs(ny, nx, check,visited));
 	}
-	return result;
+	
 }
 
 int main()
@@ -50,7 +48,7 @@ int main()
 			a[i][j] = temp[j];
 		}
 	}
-	set<char> check;
-	vector<vector<int>> visited(R, vector<int>(C, 0));
-	cout<<dfs(0, 0, check,visited);
+	visited[a[0][0] - 'A'] = 1;
+	Func(0, 0, 1);
+	cout << result;
 }
