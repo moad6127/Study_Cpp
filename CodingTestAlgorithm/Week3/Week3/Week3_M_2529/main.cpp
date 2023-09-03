@@ -1,17 +1,14 @@
 #include <bits/stdc++.h>
-
 using namespace std;
+
 int K;
 char a[12];
+vector<string> result;
 int visited[10];
-string maxNum = "-1";
-string minNum = "9999999999";
-bool check;
-vector<char> NUMBERS = { '0','1','2','3','4','5','6','7','8','9' };
 
-bool CompCheck(char a, char b, char Comp)
+bool compChek(char a, char b, char op)
 {
-	if (Comp == '<')
+	if (op == '<')
 	{
 		return a < b;
 	}
@@ -20,70 +17,29 @@ bool CompCheck(char a, char b, char Comp)
 		return a > b;
 	}
 }
-
-bool checkFunc(string input)
+void Func(int idx ,string num)
 {
-	for (int i = 0; i < K; i++)
+	if (num.size() == K + 1)
 	{
-		if (!CompCheck(input[i], input[i + 1], a[i]))
+		result.push_back(num);
+		return;
+	}
+
+	for (int i = 0; i <= 9; i++)
+	{
+		if (visited[i])
 		{
-			return false;
+			continue;
+		}
+		if (idx == 0 || compChek(num[idx - 1], i + '0', a[idx - 1]))
+		{
+			visited[i] = 1;
+			Func(idx + 1, num + to_string(i));
+			visited[i] = 0;
 		}
 	}
-	return true;
 }
-void makeMinPermutation(int n, int r, int depth) {
-	if (r == depth) {
-		string temp;
-		for (int i = 0; i <= K; i++)
-		{
-			temp += NUMBERS[i];
-		}
-		if (checkFunc(temp))
-		{
-			minNum = min(minNum, temp);
-			check = true;
-		}
-		return;
-	}
-	if (check)
-	{
-		return;
-	}
-	for (int i = depth; i < n; i++)
-	{
-		swap(NUMBERS[i], NUMBERS[depth]);
-		makeMinPermutation(n, r, depth + 1);
-		swap(NUMBERS[i], NUMBERS[depth]);
-	}
-	return;
-}
-void makeMaxPermutation(int n, int r, int depth) {
-	if (r == depth) {
-		string temp;
-		for (int i = 0; i <= K; i++)
-		{
-			temp += NUMBERS[i];
-		}
-		if (checkFunc(temp))
-		{
-			maxNum = max(maxNum, temp);
-			check = true;
-		}
-		return;
-	}
-	if (check)
-	{
-		return;
-	}
-	for (int i = depth; i < n; i++)
-	{
-		swap(NUMBERS[i], NUMBERS[depth]);
-		makeMaxPermutation(n, r, depth + 1);
-		swap(NUMBERS[i], NUMBERS[depth]);
-	}
-	return;
-}
+
 
 int main()
 {
@@ -92,14 +48,7 @@ int main()
 	{
 		cin >> a[i];
 	}
-	string temp;
-	makeMinPermutation(10, K+1,0);
-	sort(NUMBERS.begin(), NUMBERS.end(), greater<>());
-	memset(visited, 0, sizeof(visited));
-	check = false;
-	temp.clear();
-	makeMaxPermutation(10, K + 1, 0);
-
-	cout << maxNum << '\n';
-	cout << minNum << '\n';
+	Func(0, "");
+	sort(result.begin(), result.end());
+	cout << result.back() << '\n' << result[0];
 }
