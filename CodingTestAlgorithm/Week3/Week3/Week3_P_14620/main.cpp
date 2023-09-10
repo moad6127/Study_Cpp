@@ -9,60 +9,33 @@ int visited[12][12];
 int result = 10000000;
 const int dy[4] = { -1, 1, 0 , 0 };
 const int dx[4] = { 0, 0, -1, 1 };
-const int checkY[4] = { -2, 2, 0 , 0 };
-const int checkX[4] = { 0 , 0, -2, 2 };
 
-void PrintV(const vector<vector<int>>& visited)
+bool Check(int y, int x)
 {
-	for (int i = 0; i < N; i++)
-	{
-		for (int j = 0; j < N; j++)
-		{
-			cout << visited[i][j] << " ";
-		}
-		cout << '\n';
-	}
-}
-void Func(int y, int x, int count, vector<vector<int>> visited,int sum)
-{
-	if (count == 3)
-	{
-		result = min(result, sum);
-		PrintV(visited);
-		return;
-	}
 	if (visited[y][x])
 	{
-		return;
+		return 0;
 	}
-	sum += a[y][x];
-	visited[y][x] = 1;
 	for (int i = 0; i < 4; i++)
 	{
 		int ny = y + dy[i];
 		int nx = x + dx[i];
 		if (ny < 0 || ny >= N || nx < 0 || nx >= N)
 		{
-			return;
+			return 0;
 		}
 		if (visited[ny][nx])
 		{
-			return;
+			return 0;
 		}
 	}
-	for (int i = 0; i < 4; i++)
-	{
-		int chY = y + checkY[i];
-		int chX = x + checkX[i];
-		if (chY < 0 || chY >= N || chX < 0 || chX >= N)
-		{
-			continue;
-		}
-		if (visited[chY][chX])
-		{
-			return;
-		}
-	}
+	return 1;
+}
+
+int SetF(int y, int x)
+{
+	visited[y][x] = 1;
+	int sum = a[y][x];
 	for (int i = 0; i < 4; i++)
 	{
 		int ny = y + dy[i];
@@ -70,11 +43,35 @@ void Func(int y, int x, int count, vector<vector<int>> visited,int sum)
 		visited[ny][nx] = 1;
 		sum += a[ny][nx];
 	}
-	for (int i = 0; i < N ; i++)
+	return sum;
+}
+void RemoveF(int y, int x)
+{
+	visited[y][x] = 0;
+	for (int i = 0; i < 4; i++)
+	{
+		int ny = y + dy[i];
+		int nx = x + dx[i];
+		visited[ny][nx] = 0;
+	}
+}
+
+void Func(int count, int sum)
+{
+	if (count == 3)
+	{
+		result = min(result, sum);
+		return;
+	}
+	for (int i = 0; i < N; i++)
 	{
 		for (int j = 0; j < N; j++)
 		{
-			Func(i, j, count + 1, visited, sum);
+			if (Check(i, j))
+			{
+				Func(count + 1, sum + SetF(i, j));
+				RemoveF(i,j);
+			}
 		}
 	}
 }
@@ -88,13 +85,6 @@ int main()
 			cin >> a[i][j];
 		}
 	}
-	vector<vector<int>> visited(N, vector<int>(N, 0));
-	for (int i = 0; i < N ; i++)
-	{
-		for (int j = 0; j < N ; j++)
-		{
-			Func(i, j, 0, visited,0);
-		}
-	}
+	Func(0, 0);
 	cout << result;
 }
