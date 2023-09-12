@@ -6,7 +6,6 @@ using namespace std;
 int R, C, K;
 char a[15][15];
 int visited[15][15];
-int resultCount[100];
 int startY;
 int startX;
 int endY;
@@ -14,18 +13,18 @@ int endX;
 const int dy[4] = { -1, 1, 0, 0 };
 const int dx[4] = { 0, 0, -1, 1 };
 
-void Func(int y, int x, int count)
+int Func(int y, int x, int count)
 {
-	visited[y][x] = 1;
-	if (a[y][x] == 'T')
-	{
-		return;
-	}
+
 	if (y == endY && x == endX)
 	{
-		resultCount[count]++;
-		return;
+		if (visited[y][x] == K)
+		{
+			return 1;
+		}
+		return 0;
 	}
+	int result{};
 	for (int i = 0; i < 4; i++)
 	{
 		int ny = y + dy[i];
@@ -38,11 +37,15 @@ void Func(int y, int x, int count)
 		{
 			continue;
 		}
-		visited[ny][nx] = 1;
-		Func(ny, nx, count + 1);
+		if (a[ny][nx] == 'T')
+		{
+			continue;
+		}
+		visited[ny][nx] = visited[y][x] + 1;
+		result += Func(ny, nx, count + 1);
 		visited[ny][nx] = 0;
 	}
-
+	return result;
 }
 
 int main()
@@ -62,9 +65,6 @@ int main()
 	startX = 0;
 	endY = 0;
 	endX = C - 1;
-
-
-
-	Func(startY, startX, 1);
-	cout << resultCount[K];
+	visited[startY][startX] = 1;
+	cout<<Func(startY, startX, 1);
 }
