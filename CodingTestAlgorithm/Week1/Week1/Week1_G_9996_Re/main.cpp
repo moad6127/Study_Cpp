@@ -14,14 +14,21 @@ int main()
 	{
 		string temp;
 		cin >> temp;
-
-		if (in == temp.substr(0,in.size()) && out == temp.substr(temp.size() - out.size()))
-		{
-			cout << "DA" << '\n';
-		}
-		else
+		if (in.size() + out.size() > temp.size())
 		{
 			cout << "NE" << '\n';
 		}
+		else
+		{
+			if (in == temp.substr(0, in.size()) && out == temp.substr(temp.size() - out.size()))
+			{
+				cout << "DA" << '\n';
+			}
+			else
+			{
+				cout << "NE" << '\n';
+			}
+		}
+
 	}
 }
