@@ -21,6 +21,6 @@ int main()
 			check %= N;
 			result++;
 		}
-		cout << result;
+		cout << result<<'\n';
 	}
 }
