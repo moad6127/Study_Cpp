@@ -61,5 +61,11 @@ using namespace std;
 //	cout << idx << '\n';
 //}
 // 
-// 
+// 4.크기가 n인 집합의 모든비트 켜기
+// (1<<n) - 1
+int main()
+{
+	int n = 4;
+	cout << (1 << n) - 1 << '\n';
+}
 //
