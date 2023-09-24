@@ -30,9 +30,9 @@ int main()
 		{
 			if (i & (1 << j))
 			{
+				v.push_back(j + 1);
 				for (int k = 0; k < 5; k++)
 				{
-					v.push_back(j + 1);
 					checkA[k] += a[j][k];
 				}
 			}
