@@ -13,19 +13,10 @@ long three_numbers(int t, vector<int> d) {
         {
             long check = d[i] + d[j];
             long dis = t - check;
+            auto lower = lower_bound(d.begin(), d.end(), dis) - d.begin();
+            long upper = upper_bound(d.begin(), d.end(), dis) - d.begin();
 
-            for (int k = j + 1; k < d.size(); k++)
-            {
-                if (d[k] > dis)
-                {
-                    break;
-                }
-                result++;
-            }
-            //long lower = lower_bound(d.begin() + j + 1, d.end(), dis) - d.begin();
-            //long upper = upper_bound(d.begin() + j + 1, d.end(), dis) - d.begin();
-
-            //result += upper - lower;
+            result++;
 
         }
     }
@@ -110,6 +101,10 @@ int GetMaxScore(vector<int> scores) {
 }
 int main()
 {
-    vector<int> a{-1, -1, 0 ,1};
-    GetMaxScore(a);
+    vector<int> a{-1, -1, 0 ,1,-92,102,2030,1040,-231};
+    //GetMaxScore(a);
+
+    vector<int> check{1, 2, 3, 4, 5};
+    three_numbers(8, check);
+
 }
