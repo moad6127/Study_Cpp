@@ -3,25 +3,50 @@
 
 using namespace std;
 
-long three_numbers(int t, vector<int> d) {
-    long result{};
-    sort(d.begin(), d.end());
+long long countCombinations(vector<int>& nums, int T) {
+    int N = nums.size();
+    sort(nums.begin(), nums.end()); // 정렬
 
-    for (int i = 0; i < d.size() - 2; i++)
-    {
-        for (int j = i + 1; j < d.size() - 1; j++)
-        {
-            long check = d[i] + d[j];
-            long dis = t - check;
-            auto lower = lower_bound(d.begin(), d.end(), dis) - d.begin();
-            long upper = upper_bound(d.begin(), d.end(), dis) - d.begin();
+    long long count = 0;
 
-            result++;
+    for (int i = 0; i < N; i++) {
+        int target = T - nums[i];
+        int left = i + 1, right = N - 1;
 
+        while (left < right) {
+            int sum = nums[left] + nums[right];
+            if (sum <= target) {
+                count += (right - left); // B가 고정된 경우의 가능한 A와 C의 조합 수
+                left++;
+            }
+            else {
+                right--;
+            }
         }
     }
 
-    return result;
+    return count;
+}
+long long countCombinations_Sec(vector<int>& nums, int T) {
+    int N = nums.size();
+    sort(nums.begin(), nums.end()); // 정렬
+
+    long long count = 0;
+
+    for (int a = 0; a < N; a++) {
+        for (int b = a + 1; b < N; b++) {
+            int target = T - nums[a] - nums[b];
+
+            // 이진 검색을 통해 C의 범위를 찾음
+            int left = b + 1, right = N - 1;
+            int pos = upper_bound(nums.begin() + left, nums.begin() + right + 1, target) - nums.begin();
+
+            if (pos > b)
+                count += pos - b - 1; // 가능한 C의 개수
+        }
+    }
+
+    return count;
 }
 
 int GetMaxTime(vector<int> initialEnergy, long th) {
@@ -105,6 +130,6 @@ int main()
     //GetMaxScore(a);
 
     vector<int> check{1, 2, 3, 4, 5};
-    three_numbers(8, check);
+    countCombinations_Sec(check, 8);
 
 }
