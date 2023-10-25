@@ -1,9 +1,11 @@
 #include <bits/stdc++.h>
-
 using namespace std;
-int A, B;
+
+double A, B;
 int main()
 {
+	cout << fixed;
+	cout.precision(9);
 	cin >> A >> B;
-	cout << A + B;
+	cout << A / B;
 }
