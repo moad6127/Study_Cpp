@@ -2,61 +2,44 @@
 
 using namespace std;
 
-int N;
-vector<int> PList;
-int result;
-
-bool CheckPrime(int n)
-{
-	if (n < 2)
-	{
-		return false;
-	}
-	for (int i = 2; i * i <= n; i++)
-	{
-		if (n % i == 0)
-		{
-			return false;
-		}
-	}
-	return true;
-}
-
-void CheckList()
-{
-	for (int i = 2; i <= N; i++)
-	{
-		if (CheckPrime(i))
-		{
-			PList.push_back(i);
-		}
-	}
-}
+bool che[4000001];
+int n, a[2000001], p, lo, hi, result, sum;
 int main()
 {
-	cin >> N;
-	CheckList();
-
-	for (int i = 0; i < PList.size(); i++)
+	cin >> n;
+	for (int i = 2; i <= n; i++)
 	{
-		int sum{PList[i]};
-		if (sum == N)
+		if(che[i])
 		{
-			result++;
+			continue;
+		}
+		for (int j = 2 * i; j <= n; j += i)
+		{
+			che[j] = 1;
+		}
+	}
+	for (int i = 2; i <= n; i++)
+	{
+		if (!che[i])
+		{
+			a[p++] = i;
+		}
+	}
+
+	while (true)
+	{
+		if (sum >= n)
+		{
+			sum -= a[lo++];
+		}
+		else if (hi == p)
+		{
 			break;
 		}
-		for (int j = i + 1; j < PList.size(); j++)
+		else sum += a[hi++];
+		if (sum == n)
 		{
-			sum += PList[j];
-			if (sum > N)
-			{
-				break;
-			}
-			else if (sum == N)
-			{
-				result++;
-				break;
-			}
+			result;
 		}
 	}
 	cout << result;
