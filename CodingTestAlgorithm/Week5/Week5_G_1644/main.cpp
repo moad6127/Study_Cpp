@@ -39,7 +39,7 @@ int main()
 		else sum += a[hi++];
 		if (sum == n)
 		{
-			result;
+			result++;
 		}
 	}
 	cout << result;
