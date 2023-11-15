@@ -6,7 +6,7 @@ int main()
 {
 	while (getline(cin, s))
 	{
-		cout << s;
+		cout << s<<'\n';
 	}
 
 }
