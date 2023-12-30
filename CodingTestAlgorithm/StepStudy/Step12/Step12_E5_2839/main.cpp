@@ -19,6 +19,11 @@ void Func(int n, int count)
 	a[n] = count;
 	Func(n + 5, count + 1);
 	Func(n + 3, count + 1);
+
+
+
+
+
 }
 int main()
 {
