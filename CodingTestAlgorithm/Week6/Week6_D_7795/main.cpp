@@ -2,14 +2,14 @@
 
 using namespace std;
 int T, N, M;
-int a[20004];
-int b[20004];
 
 int main()
 {
 	cin >> T;
 	for (int i = 0; i < T; i++)
 	{
+		vector<int> a(N);
+		vector<int>b(M);
 		int result{};
 		cin >> N >> M;
 		for (int i = 0; i < N; i++)
@@ -20,17 +20,12 @@ int main()
 		{
 			cin >> b[i];
 		}
-		sort(a, a + N);
-		sort(b, b + M);
+		sort(a.begin(), a.end());
+		sort(b.begin(),b.end());
 		for (int i = 0; i < N; i++)
 		{
-			for (int j = 0; j < M; j++)
-			{
-				if (a[i] > b[j])
-				{
-					result++;
-				}
-			}
+			auto pos = lower_bound(b.begin(), b.end(), a[i]);
+			result += (int)(pos - b.begin());
 		}
 		cout << result<<'\n';
 	}
