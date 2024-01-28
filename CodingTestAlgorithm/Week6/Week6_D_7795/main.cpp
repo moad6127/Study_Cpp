@@ -8,10 +8,10 @@ int main()
 	cin >> T;
 	for (int i = 0; i < T; i++)
 	{
+		cin >> N >> M;
 		vector<int> a(N);
 		vector<int>b(M);
 		int result{};
-		cin >> N >> M;
 		for (int i = 0; i < N; i++)
 		{
 			cin >> a[i];
