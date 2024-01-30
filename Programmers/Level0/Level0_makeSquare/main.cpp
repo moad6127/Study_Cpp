@@ -10,14 +10,17 @@ vector<vector<int>> solution(vector<vector<int>> arr) {
     {
         for (auto& e : arr)
         {
-            e.push_back(0);
+            for (int i = 0; i < ySize - xSize; i++)
+            {
+                e.push_back(0);
+            }
         }
     }
     else if(ySize < xSize)
     {
-        for (int i = 0; i < ySize - xSize; i++)
+        for (int i = 0; i < xSize - ySize; i++)
         {
-            vector<int> temp(ySize, 0);
+            vector<int> temp(xSize, 0);
             arr.push_back(temp);
         }
     }
