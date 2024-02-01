@@ -16,10 +16,3 @@ int solution(vector<int> rank, vector<bool> attendance) {
     answer += (10000 * v[0].second) + (100 * v[1].second) + v[2].second;
     return answer;
 }
-
-int main()
-{
-    vector<int>rank{3, 7, 2, 5, 4, 6, 1};
-    vector<bool> at{false, true, true, true, true, false, false};
-    solution(rank, at);
-}
