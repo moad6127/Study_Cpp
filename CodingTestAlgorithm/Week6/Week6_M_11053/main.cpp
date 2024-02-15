@@ -3,19 +3,26 @@
 using namespace std;
 
 int N;
-int a[1004], result, num;
+int a[1004], result, cnt[1004];
 int main()
 {
 	cin >> N;
 	for (int i = 0; i < N; i++)
 	{
-		cin >> num;
-		auto lowerPos = lower_bound(a, a + result, num);
-		if (*lowerPos == 0)
+		cin >> a[i];
+	}
+	for (int i = 0; i < N; i++)
+	{
+		int mx = 0;
+		for (int j = 0; j < i; j++)
 		{
-			result++;
+			if (a[j] < a[i] && mx < cnt[j])
+			{
+				mx = cnt[j];
+			}
 		}
-		*lowerPos = num;
+		cnt[i] = mx + 1;
+		result = max(result, cnt[i]);
 	}
 	cout << result;
 }
