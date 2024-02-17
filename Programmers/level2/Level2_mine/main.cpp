@@ -31,9 +31,7 @@ void Func(vector<int> picks, vector<string> minerals, int usePick,int now, int n
         }
         if (usePick == 0)
         {
-            useNum += 5;
-            now += 5;
-            break;
+            useNum += 1;
         }
         else if (usePick == 1)
         {
@@ -58,7 +56,7 @@ void Func(vector<int> picks, vector<string> minerals, int usePick,int now, int n
             }
             else
             {
-                useNum++;
+                useNum += 1;
             }
         }
         now++;
