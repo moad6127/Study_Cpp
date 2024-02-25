@@ -35,6 +35,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Level2_Report", "Level2_Rep
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Level2_Emoticon", "Level2_Emoticon\Level2_Emoticon.vcxproj", "{C2DF4E53-9399-4FFE-A770-F2038761B967}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Level2_tictactoe", "Level2_tictactoe\Level2_tictactoe.vcxproj", "{8F677AF2-9893-48B7-B8A3-A3F4E37E7FAF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -171,6 +173,14 @@ Global
 		{C2DF4E53-9399-4FFE-A770-F2038761B967}.Release|x64.Build.0 = Release|x64
 		{C2DF4E53-9399-4FFE-A770-F2038761B967}.Release|x86.ActiveCfg = Release|Win32
 		{C2DF4E53-9399-4FFE-A770-F2038761B967}.Release|x86.Build.0 = Release|Win32
+		{8F677AF2-9893-48B7-B8A3-A3F4E37E7FAF}.Debug|x64.ActiveCfg = Debug|x64
+		{8F677AF2-9893-48B7-B8A3-A3F4E37E7FAF}.Debug|x64.Build.0 = Debug|x64
+		{8F677AF2-9893-48B7-B8A3-A3F4E37E7FAF}.Debug|x86.ActiveCfg = Debug|Win32
+		{8F677AF2-9893-48B7-B8A3-A3F4E37E7FAF}.Debug|x86.Build.0 = Debug|Win32
+		{8F677AF2-9893-48B7-B8A3-A3F4E37E7FAF}.Release|x64.ActiveCfg = Release|x64
+		{8F677AF2-9893-48B7-B8A3-A3F4E37E7FAF}.Release|x64.Build.0 = Release|x64
+		{8F677AF2-9893-48B7-B8A3-A3F4E37E7FAF}.Release|x86.ActiveCfg = Release|Win32
+		{8F677AF2-9893-48B7-B8A3-A3F4E37E7FAF}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
