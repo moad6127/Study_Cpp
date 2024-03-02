@@ -1,8 +1,8 @@
 #include <string>
 #include <vector>
 #include <queue>
-using namespace std;
 
+using namespace std;
 
 vector<int> solution(int n, vector<vector<int>> roads, vector<int> sources, int destination) {
     vector<int> answer;
@@ -12,7 +12,7 @@ vector<int> solution(int n, vector<vector<int>> roads, vector<int> sources, int 
         graph[e[0]].push_back(e[1]);
         graph[e[1]].push_back(e[0]);
     }
-    vector<int> visit(n + 1, 99999);
+    vector<int> visit(n + 1, -1);
     queue<int> q;
     q.push(destination);
     visit[destination] = 0;
@@ -20,25 +20,18 @@ vector<int> solution(int n, vector<vector<int>> roads, vector<int> sources, int 
     {
         int now = q.front();
         q.pop();
-        for (auto e : graph[now])
+        for (auto next : graph[now])
         {
-            if (visit[now] + 1 < visit[e])
+            if (visit[next] == -1 || visit[now] + 1 < visit[next])
             {
-                visit[e] = visit[now] + 1;
-                q.push(e);
+                visit[next] = visit[now] + 1;
+                q.push(next);
             }
         }
     }
     for (auto e : sources)
     {
-        if (visit[e] == 99999)
-        {
-            answer.push_back(-1);
-        }
-        else
-        {
-            answer.push_back(visit[e]);
-        }
+        answer.push_back(visit[e]);
     }
     return answer;
 }
