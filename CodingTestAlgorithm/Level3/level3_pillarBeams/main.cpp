@@ -1,40 +1,39 @@
 #include <string>
 #include <vector>
-#include <algorithm>
+
 using namespace std;
 
-bool CheckPoint(int y, int x,int a, vector<string>& maps)
-{
-    if (a)
-    {
-        if (maps[y - 1][x] == 'Y')
-        {
-            return true;
-        }
-        if (maps[y - 1][x + 1] == 'Y')
-        {
-            return true;
-        }
-        if (maps[y][x - 1] == 'X' && maps[y][x + 1] == 'X')
-        {
-            return true;
-        }
-    }
-    else
-    {
+int Bframe[101][101][2];
+
+bool check_build_struct(int x, int y, int a, int n) {
+    if (a == 0) { // ±âµÕ
         if (y == 0)
         {
             return true;
         }
-        if (maps[y - 1][x] == 'Y')
+        if (x > 0 && Bframe[x - 1][y][1]) 
+        {
+            return true;
+        } 
+        if (y < n && Bframe[x][y][1])
         {
             return true;
         }
-        if (maps[y][x - 1] == 'X')
+        if (y > 0 && Bframe[x][y - 1][0])
         {
             return true;
         }
-        if (maps[y][x] == 'X')
+    }
+    else { // º¸
+        if (y > 0 && Bframe[x][y - 1][0])
+        {
+            return true;
+        }
+        if (x < n && y > 0 && Bframe[x + 1][y - 1][0])
+        {
+            return true;
+        }
+        if (x > 0 && x < n && Bframe[x - 1][y][1] && Bframe[x + 1][y][1])
         {
             return true;
         }
@@ -43,111 +42,59 @@ bool CheckPoint(int y, int x,int a, vector<string>& maps)
     return false;
 }
 
-bool removePoint(int y, int x,int a, vector<string>& maps)
-{
-    maps[y][x] = '.';
-    if (a)
-    {
-        if (maps[y][x] == 'Y' && !CheckPoint(y, x, 0, maps))
-        {
-            return false;
-        }
-        if (maps[y][x + 1] == 'Y' && !CheckPoint(y, x + 1, 0, maps))
-        {
-            return false;
-        }
-        if (maps[y][x - 1] == 'X' && !CheckPoint(y, x-1, 1, maps))
-        {
-            return false;
-        }
-        if (maps[y][x + 1] == 'X' && !CheckPoint(y, x + 1, 1, maps))
-        {
-            return false;
-        }
+bool check_remove_struct(int x, int y, int a, int n) {
+    Bframe[x][y][a] = 0;
+
+    if (a == 0) { // ±âµÕ
+        if (y < n && Bframe[x][y + 1][0] && !check_build_struct(x, y + 1, 0, n)) return false;
+        if (y < n && Bframe[x][y + 1][1] && !check_build_struct(x, y + 1, 1, n)) return false;
+        if (x > 0 && y < n && Bframe[x - 1][y + 1][1] && !check_build_struct(x - 1, y + 1, 1, n)) return false;
     }
-    else
-    {
-        if (maps[y + 1][x] == 'Y' && !CheckPoint(y + 1, x, 0, maps))
-        {
-            return false;
-        }
-        if (maps[y + 1][x] == 'X' && !CheckPoint(y+1,x, 1, maps))
-        {
-            return false;
-        }
-        if (maps[y + 1][x - 1] == 'X' && !CheckPoint(y + 1, x - 1, 1, maps))
-        {
-            return false;
-        }
+    else { // º¸
+        if (Bframe[x][y][0] && !check_build_struct(x, y, 0, n)) return false;
+        if (x < n && Bframe[x + 1][y][0] && !check_build_struct(x + 1, y, 0, n)) return false;
+        if (x > 0 && Bframe[x - 1][y][1] && !check_build_struct(x - 1, y, 1, n)) return false;
+        if (x < n && Bframe[x + 1][y][1] && !check_build_struct(x + 1, y, 1, n)) return false;
     }
+
     return true;
 }
 
-bool comp(vector<int>& a, vector<int>& b)
-{
-    if (a[0] == b[0])
-    {
-        return a[1] < b[1];
-    }
-    return a[0] < b[0];
-}
 vector<vector<int>> solution(int n, vector<vector<int>> build_frame) {
     vector<vector<int>> answer;
-    vector<string> maps(n + 1,string(n + 1,'.'));
 
-    for (auto e : build_frame)
-    {
-        int x = e[0];
-        int y = e[1];
-        int a = e[2];
-        int b = e[3];
-        if (b)
-        {
-            if (CheckPoint(y, x, a, maps))
-            {
-                if (a)
-                {
-                    maps[y][x] = 'X';
-                }
-                else
-                {
-                    maps[y][x] = 'Y';
-                }
+    for (const auto& frame : build_frame) {
+        int x = frame[0];
+        int y = frame[1];
+        int a = frame[2];
+        int b = frame[3];
+
+        if (b == 0) {
+            if (!check_remove_struct(x, y, a, n)) {
+                Bframe[x][y][a] = 1;
             }
         }
-        else
-        {
-            if (!removePoint(y, x, a, maps))
-            {
-                if (a)
-                {
-                    maps[y][x] = 'X';
-                }
-                else
-                {
-                    maps[y][x] = 'Y';
-                }
+        else {
+            if (check_build_struct(x, y, a, n)) {
+                Bframe[x][y][a] = 1;
             }
         }
     }
-    for (int i = 0; i <= n; i++)
-    {
-        for (int j = 0; j <= n; j++)
-        {
-            if (maps[i][j] == 'Y')
-            {
-                answer.push_back({ j,i,0 });
+
+    for (int i = 0; i <= n; i++) {
+        for (int j = 0; j <= n; j++) {
+            if (Bframe[i][j][0]) {
+                answer.push_back({ i, j, 0 });
             }
-            if (maps[i][j] == 'X')
-            {
-                answer.push_back({ j,i,1 });
+            if (Bframe[i][j][1]) {
+                answer.push_back({ i, j, 1 });
             }
         }
     }
-    sort(answer.begin(), answer.end(), comp);
 
     return answer;
 }
+
 
 int main()
 {
