@@ -4,19 +4,24 @@ using namespace std;
 
 int N;
 int a[21], b[21];
-int dp[104];
-
-int Func(int nowH, int nowG,int here)
+int dp[104][21];
+const int MAX = 987654321;
+int Func(int nowH,int here)
 {
 	if (nowH <= 0)
 	{
-		return 0;
+		return -MAX;
 	}
 	if (here >= N)
 	{
-		return nowG;
-	}	
-	return max(Func(nowH, nowG, here + 1), Func(nowH - a[here], nowG + b[here], here + 1));
+		return 0;
+	}
+	if (dp[nowH][here])
+	{
+		return dp[nowH][here];
+	}
+	dp[nowH][here] = max(Func(nowH, here + 1), Func(nowH - a[here], here + 1) + b[here]);
+	return dp[nowH][here];
 }
 int main()
 {
@@ -29,5 +34,5 @@ int main()
 	{
 		cin >> b[i];
 	}
-	cout << Func(100, 0, 0);
+	cout << Func(100, 0);
 }
