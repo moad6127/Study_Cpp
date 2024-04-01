@@ -49,6 +49,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "level1_sumNum", "level1_sum
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "level1_checkPrice", "level1_checkPrice\level1_checkPrice.vcxproj", "{8A187A79-97FF-4C62-8B31-C92B5380C671}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Level1_String", "Level1_String\Level1_String.vcxproj", "{FE475D2E-EBB7-4EF1-8029-FDDCE9792004}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -241,6 +243,14 @@ Global
 		{8A187A79-97FF-4C62-8B31-C92B5380C671}.Release|x64.Build.0 = Release|x64
 		{8A187A79-97FF-4C62-8B31-C92B5380C671}.Release|x86.ActiveCfg = Release|Win32
 		{8A187A79-97FF-4C62-8B31-C92B5380C671}.Release|x86.Build.0 = Release|Win32
+		{FE475D2E-EBB7-4EF1-8029-FDDCE9792004}.Debug|x64.ActiveCfg = Debug|x64
+		{FE475D2E-EBB7-4EF1-8029-FDDCE9792004}.Debug|x64.Build.0 = Debug|x64
+		{FE475D2E-EBB7-4EF1-8029-FDDCE9792004}.Debug|x86.ActiveCfg = Debug|Win32
+		{FE475D2E-EBB7-4EF1-8029-FDDCE9792004}.Debug|x86.Build.0 = Debug|Win32
+		{FE475D2E-EBB7-4EF1-8029-FDDCE9792004}.Release|x64.ActiveCfg = Release|x64
+		{FE475D2E-EBB7-4EF1-8029-FDDCE9792004}.Release|x64.Build.0 = Release|x64
+		{FE475D2E-EBB7-4EF1-8029-FDDCE9792004}.Release|x86.ActiveCfg = Release|Win32
+		{FE475D2E-EBB7-4EF1-8029-FDDCE9792004}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
