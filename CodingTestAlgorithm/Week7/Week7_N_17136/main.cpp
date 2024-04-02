@@ -2,11 +2,15 @@
 
 using namespace std;
 
-vector<vector<int>> A(10,vector<int>(10,0));
+int a[11][11];
 int result = 100000;
-
-bool check(int startX, int startY, int size, vector<vector<int>>& a)
+map<int, int> maxPage;
+bool check(int startX, int startY, int size)
 {
+	if (startY + size > 10 || startX + size > 10)
+	{
+		return false;
+	}
 	for (int i = startY; i < startY + size; i++)
 	{
 		for (int j = startX; j < startX + size; j++)
@@ -19,32 +23,52 @@ bool check(int startX, int startY, int size, vector<vector<int>>& a)
 	}
 	return true;
 }
-void zFunc(int startX, int startY, int size, vector<vector<int>>& a)
+void zFunc(int startX, int startY, int size,int value)
 {
 	for (int i = startY; i < startY + size; i++)
 	{
 		for (int j = startX; j < startX + size; j++)
 		{
-			a[i][j] = 0;
+			a[i][j] = value;
 		}
 	}
 }
-bool checkNum(vector<vector<int>>& a)
+void dfs(int y, int x, int cnt)
 {
-	for (int i = 0; i < 10; i++)
+	if (cnt >= result)
 	{
-		for (int j = 0; j < 10; j++)
+		return;
+	}
+	if (x == 10)
+	{
+		dfs(y + 1, 0, cnt);
+		return;
+	}
+	if (y == 10)
+	{
+		result = min(cnt, result);
+	}
+	if (a[y][x] == 0)
+	{
+		dfs(y, x + 1, cnt);
+		return;
+	}
+
+	for (int size = 5; size >= 1; size--)
+	{
+		if (maxPage[size] == 5)
 		{
-			if (a[i][j] == 1)
-			{
-				return false;
-			}
+			continue;
+		}
+		if (check(x, y, size))
+		{
+			maxPage[size]++;
+			zFunc(x, y, size, 0);
+			dfs(y, x + size, cnt + 1);
+			zFunc(x, y, size, 1);
+			maxPage[size]--;
 		}
 	}
-	return true;
-}
-void fullTemp()
-{
 }
 int main()
 {
@@ -52,40 +76,10 @@ int main()
 	{
 		for (int j = 0; j < 10; j++)
 		{
-			cin >> A[i][j];
+			cin >> a[i][j];
 		}
 	}
-	vector<int> pSize{1, 2, 3, 4, 5};
-	do
-	{
-		vector<vector<int>> b(A.begin(), A.end());
-		int temp{};
-		for (int size = 0; size < pSize.size(); size++)
-		{
-			int maxCnt{ 5 };
-			for (int i = 0; i <= 10 - pSize[size]; i++)
-			{
-				for (int j = 0; j <= 10 - pSize[size]; j++)
-				{
-					if (b[i][j] == 1)
-					{
-						if (maxCnt && check(j, i, pSize[size],b))
-						{
-							zFunc(j, i, pSize[size],b);
-							temp++;
-							maxCnt--;
-						}
-					}
-				}
-			}
-		}
-		if (checkNum(b))
-		{
-			result = min(result, temp);
-		}
-		
-
-	} while (next_permutation(pSize.begin(), pSize.end()));
+	dfs(0, 0, 0);
 	if (result == 100000)
 	{
 		cout << -1;
