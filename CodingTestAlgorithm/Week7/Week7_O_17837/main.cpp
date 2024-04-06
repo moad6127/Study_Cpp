@@ -1,0 +1,109 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+struct MAL {
+	int x;
+	int y;
+	int dir;
+};
+const int dy[] = { 0,0,-1,1 };
+const int dx[] = { 1,-1,0,0 };
+int N, K,x,y,dir,result = -1;
+int a[14][14];
+string m[14][14];
+vector<MAL> mal;
+
+bool check()
+{
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < N; j++)
+		{
+			if (m[i][j].size() >= 4)
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+int main()
+{
+	cin >> N >> K;
+	for (int i = 0; i < N; i++)
+	{
+		for (int j = 0; j < N; j++)
+		{
+			cin >> a[i][j];
+		}
+	}
+	for (int i = 0; i < K; i++)
+	{
+		cin >> y >> x >> dir;
+		x--;
+		y--;
+		m[y][x] += i + '0';
+		mal.push_back({x,y,dir - 1});
+	}
+	for (int T = 1; T <= 1000; T++)
+	{
+		for (int i = 0; i < mal.size(); i++)
+		{
+			auto itr = m[mal[i].y][mal[i].x].find(i + '0');
+			string movingT = m[mal[i].y][mal[i].x].substr(itr);
+			string temp = m[mal[i].y][mal[i].x].substr(0,itr);
+			int ny = mal[i].y + dy[mal[i].dir];
+			int nx = mal[i].x + dx[mal[i].dir];
+			if (a[ny][nx] == 1)
+			{
+				reverse(movingT.begin(), movingT.end());
+			}
+			if (ny < 0 || ny >= N || nx < 0 || nx >= N || a[ny][nx] == 2)
+			{
+				if (mal[i].dir == 0)
+				{
+					mal[i].dir = 1;
+				}
+				else if (mal[i].dir == 1)
+				{
+					mal[i].dir = 0;
+				}
+				else if (mal[i].dir == 2)
+				{
+					mal[i].dir = 3;
+				}
+				else if (mal[i].dir == 3)
+				{
+					mal[i].dir = 2;
+				}
+				int nny = mal[i].y + dy[mal[i].dir];
+				int nnx = mal[i].x + dx[mal[i].dir];
+				if (nny < 0 || nny >= N || nnx < 0 || nnx >= N || a[nny][nnx] == 2)
+				{
+					continue;
+				}
+				else
+				{
+					i--;
+					continue;
+				}
+			}
+			m[ny][nx] += movingT;
+			m[mal[i].y][mal[i].x] = temp;
+			for (int j = 0; j < movingT.size(); j++)
+			{
+				int now = movingT[j] - '0';
+				mal[now].y = ny;
+				mal[now].x = nx;
+			}
+			if (check())
+			{
+				cout << T;
+				return 0;
+			}
+		}
+	}
+	cout << -1;
+
+}
