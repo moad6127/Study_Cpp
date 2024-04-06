@@ -55,31 +55,13 @@ int main()
 			string temp = m[mal[i].y][mal[i].x].substr(0,itr);
 			int ny = mal[i].y + dy[mal[i].dir];
 			int nx = mal[i].x + dx[mal[i].dir];
-			if (a[ny][nx] == 1)
-			{
-				reverse(movingT.begin(), movingT.end());
-			}
+
 			if (ny < 0 || ny >= N || nx < 0 || nx >= N || a[ny][nx] == 2)
 			{
-				if (mal[i].dir == 0)
-				{
-					mal[i].dir = 1;
-				}
-				else if (mal[i].dir == 1)
-				{
-					mal[i].dir = 0;
-				}
-				else if (mal[i].dir == 2)
-				{
-					mal[i].dir = 3;
-				}
-				else if (mal[i].dir == 3)
-				{
-					mal[i].dir = 2;
-				}
-				int nny = mal[i].y + dy[mal[i].dir];
-				int nnx = mal[i].x + dx[mal[i].dir];
-				if (nny < 0 || nny >= N || nnx < 0 || nnx >= N || a[nny][nnx] == 2)
+				mal[i].dir ^= 1;
+				int ny = mal[i].y + dy[mal[i].dir];
+				int nx = mal[i].x + dx[mal[i].dir];
+				if (ny < 0 || ny >= N || nx < 0 || nx >= N || a[ny][nx] == 2)
 				{
 					continue;
 				}
@@ -88,6 +70,10 @@ int main()
 					i--;
 					continue;
 				}
+			}
+			if (a[ny][nx] == 1)
+			{
+				reverse(movingT.begin(), movingT.end());
 			}
 			m[ny][nx] += movingT;
 			m[mal[i].y][mal[i].x] = temp;
