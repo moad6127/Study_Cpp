@@ -2,34 +2,49 @@
 
 using namespace std;
 
-const vector<int> PRIM{2, 3, 5, 7,11, 13, 17};
-const vector<int> NOTPRIM{0,1,4,6,8,9,10,12,14,15,16,18};
+bool Prim[24];
+double A, B, dp[24][24][24];
 
-double A, B,result;
-double a[20];
-double b[20];
+double Func(int idx, int x, int y)
+{
+	if (idx == 18)
+	{
+		return Prim[x] || Prim[y] ? 1.0 : 0.0;
+	}
+	if (dp[idx][x][y] > -0.5)
+	{
+		return dp[idx][x][y];
+	}
+	dp[idx][x][y] = 0;
+	dp[idx][x][y] += Func(idx + 1, x, y) * (1 - A) * (1 - B);
+	dp[idx][x][y] += Func(idx + 1, x + 1, y) * A * (1 - B);
+	dp[idx][x][y] += Func(idx + 1, x, y + 1) * (1 - A) * B;
+	dp[idx][x][y] += Func(idx + 1, x + 1, y + 1) * A * B;
 
+	return dp[idx][x][y];
+}
+
+
+void PrimChe()
+{
+	fill(Prim, Prim + 20, 1);
+	Prim[0] = 0;
+	Prim[1] = 0;
+	for (int i = 2; i <= 20; i++)
+	{
+		for (int j = i + i; j <= 20; j += i)
+		{
+			Prim[j] = 0;
+		}
+	}
+}
 int main()
 {
 	cin >> A >> B;
-	a[0] = 1;
-	b[0] = 1;
 	A /= 100;
 	B /= 100;
+	PrimChe();
+	memset(dp, -1, sizeof(dp));
 
-	for (int i = 1; i <= 18; i++)
-	{
-		a[i] = a[i - 1] * A;
-		a[i - 1] -= a[i];
-		b[i] = b[i - 1] * B;
-		b[i - 1] -= b[i];
-	}
-	for (int i = 0; i < NOTPRIM.size(); i++)
-	{
-		for (int j = 0; j < NOTPRIM.size(); j++)
-		{
-			result += (a[NOTPRIM[i]] * b[NOTPRIM[j]]);
-		}
-	}
-	cout << 1 - result;
+	cout << Func(0, 0, 0);
 }
