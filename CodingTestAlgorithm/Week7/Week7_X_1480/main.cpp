@@ -3,7 +3,7 @@
 using namespace std;
 
 int N, M, C;
-int a[15];
+int a[24];
 int pack[24];
 int dp[24][1 << 14][24];
 
@@ -19,7 +19,7 @@ int Func(int here, int y, int c)
 		return dp[here][y][c];
 	}
 	//보석을 담지 않고 가는것
-	dp[here][y][c] = max(dp[here][y][c], Func(here + 1, y, c));
+	dp[here][y][c] = max(dp[here][y][c], Func(here + 1, y, C));
 	for (int i = 0; i < N; i++)
 	{
 		//보석을 담는것
@@ -34,6 +34,9 @@ int Func(int here, int y, int c)
 }
 int main()
 {
+	ios_base::sync_with_stdio(0);
+	cin.tie(NULL);
+
 	cin >> N >> M >> C;
 	for (int i = 0; i < N; i++)
 	{
