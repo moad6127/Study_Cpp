@@ -4,62 +4,66 @@ using namespace std;
 
 int T, N;
 vector<int> NUMS{6, 2, 5, 5, 4, 5, 6, 3, 7, 6};
-string MinString = "999999999999999", MaxString;
-string MinDP[103];
-string MaxDP[103];
+string MaxString = "999999999999999999999999999999999999999999999999999";
+string minDP[104];
 
-bool Comp(string a, string b)
+string minStr(string a, string b)
 {
 	if (a.size() == b.size())
 	{
-		return a > b;
+		return a < b ? a : b;
 	}
-	return a.size() > b.size();
+	if (a.size() < b.size())
+	{
+		return a;
+	}
+	else
+	{
+		return b;
+	}
 }
-void MaxFunc(int nums, string st)
+string MaxFunc(int nums)
+{
+	string result;
+	if (nums & 1)
+	{
+		result += '7';
+		nums -= 3;
+	}
+	while (nums)
+	{
+		result += '1';
+		nums -= 2;
+	}
+	return result;
+}
+string MinFunc(int nums)
 {
 	if (nums == 0)
 	{
-		if (!Comp(MaxString, st))
-		{
-			MaxString = st;
-		}
+		return "";
 	}
-
+	if (minDP[nums] != MaxString)
+	{
+		return minDP[nums];
+	}
 	for (int i = 0; i < NUMS.size(); i++)
 	{
-		if (st.empty() && i == 0)
+		if (nums == N && i == 0)
 		{
 			continue;
 		}
-		if (nums >= NUMS[i])
-		{
-			MaxFunc(nums - NUMS[i], st + to_string(i));
-		}
-	}
-}
-void MinFunc(int nums, string st)
-{
-	if (nums == 0)
-	{
-		if (Comp(MinString, st))
-		{
-			MinString = st;
-		}
-		return;
-	}
-
-	for (int i = 0; i < NUMS.size(); i++)
-	{
-		if (st.empty() && i == 0)
+		if (nums - NUMS[i] < 0)
 		{
 			continue;
 		}
+
 		if (nums >= NUMS[i])
 		{
-			MinFunc(nums - NUMS[i], st + to_string(i));
+			minDP[nums] = minStr(minDP[nums], to_string(i) + MinFunc(nums - NUMS[i]));
 		}
 	}
+	return minDP[nums];
 }
 
 int main()
@@ -68,10 +72,7 @@ int main()
 	for (int i = 0; i < T; i++)
 	{
 		cin >> N;
-		MinString = "999999999999999";
-		MaxString.clear();
-		MaxFunc(N, "");
-		MinFunc(N, "");
-		cout << MinString << " " << MaxString<<'\n';
+		fill(minDP, minDP + 104, MaxString);
+		cout << MinFunc(N) << " " << MaxFunc(N)<<'\n';
 	}
 }
