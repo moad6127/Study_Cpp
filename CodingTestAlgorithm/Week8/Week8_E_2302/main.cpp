@@ -2,51 +2,33 @@
 
 using namespace std;
 
-int N, M;
+int N, M ,temp;
 int nums[41];
-int visited[42];
-bool Check(string num)
+int dp[41];
+int Func(int here)
 {
-	for (int i = 0; i < M; i++)
+	if (here >= N - 1)
 	{
-		if (num[nums[i] - 1] - '0' != nums[i])
-		{
-			return false;
-		}
+		return 1;
 	}
-	for (int i = 0; i < N; i++)
+	if (nums[here])
 	{
-		if (abs((num[i] - '0') - (i + 1)) >1)
-		{
-			return false;
-		}
+		return Func(here + 1);
 	}
-	return true;
-}
-int Func(int here, string num)
-{
-	if (here >= N)
+	if (dp[here] != -1)
 	{
-		if (Check(num))
-		{
-			return 1;
-		}
-		else
-		{
-			return 0;
-		}
+		return dp[here];
 	}
-	int result{};
-	for (int i = 1; i <= N; i++)
+	dp[here] = 0;
+	if (!nums[here + 1])
 	{
-		if (!visited[i])
-		{
-			visited[i] = true;
-			result += Func(here + 1, num + char('0' + i));
-			visited[i] = false;
-		}
+		dp[here] += (Func(here + 2) + Func(here + 1));
 	}
-	return result;
+	else
+	{
+		dp[here] += Func(here + 1);
+	}
+	return dp[here];
 }
 
 int main()
@@ -54,7 +36,9 @@ int main()
 	cin >> N >> M;
 	for (int i = 0; i < M; i++)
 	{
-		cin >> nums[i];
+		cin >> temp;
+		nums[temp - 1] = 1;
 	}
-	cout << Func(0, "");
+	memset(dp, -1, sizeof(dp));
+	cout<<Func(0);
 }
