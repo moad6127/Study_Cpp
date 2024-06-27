@@ -20,7 +20,10 @@ vector<int> solution(int n, vector<string> words) {
         }
         prevWord = words[i].back();
     }
-
+    if (endGame == 0)
+    {
+        return { 0,0 };
+    }
     return {(endGame % n) + 1, (endGame / n) + 1};
 }
 
