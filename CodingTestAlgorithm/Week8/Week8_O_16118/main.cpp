@@ -74,12 +74,12 @@ int main()
 	for (int i = 0; i < m; i++)
 	{
 		cin >> a >> b >> c;
-		adj[a].push_back({ 100*c,b });
-		adj[b].push_back({ 100 * c,a });
+		adj[a].push_back({ 2*c,b });
+		adj[b].push_back({ 2*c,a });
 	}
 	dijpx();
 	dijwo();
-	for (int i = 1; i <= n; i++)
+	for (int i = 2; i <= n; i++)
 	{
 		if (px[i] < min(wo[i][0],wo[i][1]))
 		{
