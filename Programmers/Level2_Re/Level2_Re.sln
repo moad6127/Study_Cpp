@@ -97,6 +97,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "level2_deliveryBox", "level
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "level2_filesort", "level2_filesort\level2_filesort.vcxproj", "{C2BD1232-84AF-4139-A2B9-481D87D8032A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "level2_openChat", "level2_openChat\level2_openChat.vcxproj", "{F8CAA600-448E-4BD6-86A5-A5968F7F3C32}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -481,6 +483,14 @@ Global
 		{C2BD1232-84AF-4139-A2B9-481D87D8032A}.Release|x64.Build.0 = Release|x64
 		{C2BD1232-84AF-4139-A2B9-481D87D8032A}.Release|x86.ActiveCfg = Release|Win32
 		{C2BD1232-84AF-4139-A2B9-481D87D8032A}.Release|x86.Build.0 = Release|Win32
+		{F8CAA600-448E-4BD6-86A5-A5968F7F3C32}.Debug|x64.ActiveCfg = Debug|x64
+		{F8CAA600-448E-4BD6-86A5-A5968F7F3C32}.Debug|x64.Build.0 = Debug|x64
+		{F8CAA600-448E-4BD6-86A5-A5968F7F3C32}.Debug|x86.ActiveCfg = Debug|Win32
+		{F8CAA600-448E-4BD6-86A5-A5968F7F3C32}.Debug|x86.Build.0 = Debug|Win32
+		{F8CAA600-448E-4BD6-86A5-A5968F7F3C32}.Release|x64.ActiveCfg = Release|x64
+		{F8CAA600-448E-4BD6-86A5-A5968F7F3C32}.Release|x64.Build.0 = Release|x64
+		{F8CAA600-448E-4BD6-86A5-A5968F7F3C32}.Release|x86.ActiveCfg = Release|Win32
+		{F8CAA600-448E-4BD6-86A5-A5968F7F3C32}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
