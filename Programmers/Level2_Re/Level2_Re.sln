@@ -101,6 +101,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "level2_openChat", "level2_o
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "level2_transNum", "level2_transNum\level2_transNum.vcxproj", "{2A6E7F23-C7FB-4C40-9E72-E3F3E2E0389F}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "level2_2nTile", "level2_2nTile\level2_2nTile.vcxproj", "{8940BA05-F911-4FAD-A39A-420DAC53255D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -501,6 +503,14 @@ Global
 		{2A6E7F23-C7FB-4C40-9E72-E3F3E2E0389F}.Release|x64.Build.0 = Release|x64
 		{2A6E7F23-C7FB-4C40-9E72-E3F3E2E0389F}.Release|x86.ActiveCfg = Release|Win32
 		{2A6E7F23-C7FB-4C40-9E72-E3F3E2E0389F}.Release|x86.Build.0 = Release|Win32
+		{8940BA05-F911-4FAD-A39A-420DAC53255D}.Debug|x64.ActiveCfg = Debug|x64
+		{8940BA05-F911-4FAD-A39A-420DAC53255D}.Debug|x64.Build.0 = Debug|x64
+		{8940BA05-F911-4FAD-A39A-420DAC53255D}.Debug|x86.ActiveCfg = Debug|Win32
+		{8940BA05-F911-4FAD-A39A-420DAC53255D}.Debug|x86.Build.0 = Debug|Win32
+		{8940BA05-F911-4FAD-A39A-420DAC53255D}.Release|x64.ActiveCfg = Release|x64
+		{8940BA05-F911-4FAD-A39A-420DAC53255D}.Release|x64.Build.0 = Release|x64
+		{8940BA05-F911-4FAD-A39A-420DAC53255D}.Release|x86.ActiveCfg = Release|Win32
+		{8940BA05-F911-4FAD-A39A-420DAC53255D}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,25 +1,49 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <queue>
+#include<cstring>
 using namespace std;
+
 int table[1000004];
+vector<int> CHECK{2, 3};
 int solution(int x, int y, int n) {
     int answer = 0;
-    for (int i = x + n; i <= y; i += n)
+    CHECK.push_back(n);
+    memset(table, -1, sizeof(table));
+    table[x] = 0;
+    queue<int> q;
+    q.push(x);
+    while (q.size())
     {
-        table[i] = min(table[i],table[i - n] + 1);
+        if (table[y] != -1)
+        {
+            break;
+        }
+        int now = q.front();
+        q.pop();
+        for (int i = 0; i < 3; i++)
+        {
+            int next{};
+            if (i == 2)
+            {
+                next = now + CHECK[i];
+            }
+            else
+            {
+                next = now * CHECK[i];
+            }
+            if (next > y)
+            {
+                continue;
+            }
+            if (table[next] != -1)
+            {
+                continue;
+            }
+            table[next] = table[now] + 1;
+            q.push(next);
+        }
     }
-    for (int i = x * 2; i <= y; i *= 2)
-    {
-        table[i] = min(table[i],table[i/2] + 1);
-    } 
-    for (int i = x * 3; i <= y; i *= 3)
-    {
-        table[i] = min(table[i],table[i/3] + 1);
-    }
-    return table[y] == 0 ? -1 : table[y];
-}
-int main()
-{
-    solution(10, 40, 30);
+    return table[y];
 }
