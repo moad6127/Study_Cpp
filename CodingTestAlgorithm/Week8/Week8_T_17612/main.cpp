@@ -33,6 +33,13 @@ bool comp2(info& a, info& b)
 
 int main()
 {
+
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cout.tie(NULL);
+
+
+
 	cin >> n >> k;
 	priority_queue<info, vector<info>, comp> pq;
 	for (int i = 0; i < n; i++)
