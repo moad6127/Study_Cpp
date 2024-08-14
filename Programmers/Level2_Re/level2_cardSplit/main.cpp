@@ -23,11 +23,11 @@ int solution(vector<int> arrayA, vector<int> arrayB) {
     }
     for (int i = 0; i < arrayA.size(); i++)
     {
-        if (arrayA[i] % B == 0)
+        if (B && arrayA[i] % B == 0)
         {
             B = 0;
         }
-        if (arrayB[i] % A == 0)
+        if (A && arrayB[i] % A == 0)
         {
             A = 0;
         }
