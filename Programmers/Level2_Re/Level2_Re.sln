@@ -139,6 +139,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "level2_delivery", "level2_d
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "level2_cardSplit", "level2_cardSplit\level2_cardSplit.vcxproj", "{BC7AD717-D9A8-4247-8787-617B48AFE81B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "level2_sing", "level2_sing\level2_sing.vcxproj", "{C04762A6-AB11-4014-8991-4402FF983C07}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -691,6 +693,14 @@ Global
 		{BC7AD717-D9A8-4247-8787-617B48AFE81B}.Release|x64.Build.0 = Release|x64
 		{BC7AD717-D9A8-4247-8787-617B48AFE81B}.Release|x86.ActiveCfg = Release|Win32
 		{BC7AD717-D9A8-4247-8787-617B48AFE81B}.Release|x86.Build.0 = Release|Win32
+		{C04762A6-AB11-4014-8991-4402FF983C07}.Debug|x64.ActiveCfg = Debug|x64
+		{C04762A6-AB11-4014-8991-4402FF983C07}.Debug|x64.Build.0 = Debug|x64
+		{C04762A6-AB11-4014-8991-4402FF983C07}.Debug|x86.ActiveCfg = Debug|Win32
+		{C04762A6-AB11-4014-8991-4402FF983C07}.Debug|x86.Build.0 = Debug|Win32
+		{C04762A6-AB11-4014-8991-4402FF983C07}.Release|x64.ActiveCfg = Release|x64
+		{C04762A6-AB11-4014-8991-4402FF983C07}.Release|x64.Build.0 = Release|x64
+		{C04762A6-AB11-4014-8991-4402FF983C07}.Release|x86.ActiveCfg = Release|Win32
+		{C04762A6-AB11-4014-8991-4402FF983C07}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
