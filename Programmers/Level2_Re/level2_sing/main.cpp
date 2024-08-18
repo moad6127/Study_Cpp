@@ -3,8 +3,6 @@
 
 using namespace std;
 
-string NONSH{ "EB" };
-
 int ToTime(string t)
 {
     int h = stoi(t.substr(0, 2));
@@ -44,13 +42,31 @@ int singLen(string s)
     }
     return result - shCnt;
 }
+string changeS(string s)
+{
+    string result;
+    for (auto e : s)
+    {
+        if (e == '#')
+        {
+            char pr = result.back();
+            result.pop_back();
+            result.push_back(tolower(pr));
+            continue;
+        }
+        result.push_back(e);
+    }
+    return result;
+}
 
 string solution(string m, vector<string> musicinfos) {
     string answer = "(None)";
     int time{};
+    string reM = changeS(m);
     for (auto e : musicinfos)
     {
         vector<string> info = InfoSplit(e);
+        info[3] = changeS(info[3]);
         int startTime = ToTime(info[0]);
         int endTime = ToTime(info[1]);
         int infoLen = endTime - startTime;
@@ -79,13 +95,8 @@ string solution(string m, vector<string> musicinfos) {
             }
         }
 
-        size_t itr = nowsing.find(m);
-
-        if (itr == string::npos);
-        {
-            continue;
-        }
-        if (nowsing[itr + m.size()] != '#')
+        size_t itr = nowsing.find(reM);
+        if (itr != string::npos)
         {
             if (time < infoLen)
             {
@@ -98,5 +109,5 @@ string solution(string m, vector<string> musicinfos) {
 }
 int main()
 {
-    solution("ABCDEFG", { "12:00,12:14,HELLO,CDEFGAB", "13:00,13:05,WORLD,ABCDEF" });
+    solution("CC#BCC#BCC#BCC#B", { "03:00,03:30,FOO,CC#B", "04:00,04:08,BAR,CC#BCC#BCC#B" });
 }
