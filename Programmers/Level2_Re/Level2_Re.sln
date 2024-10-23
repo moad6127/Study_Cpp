@@ -175,6 +175,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "level2_drawSpot", "level2_d
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "level2_SecondKey", "level2_SecondKey\level2_SecondKey.vcxproj", "{7192DA7D-FA38-4238-9FA7-159027739BDE}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "level2_PuzzleGame", "level2_PuzzleGame\level2_PuzzleGame.vcxproj", "{EABD5275-4A0C-4DD1-B862-ECBCFB8F9D85}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -871,6 +873,14 @@ Global
 		{7192DA7D-FA38-4238-9FA7-159027739BDE}.Release|x64.Build.0 = Release|x64
 		{7192DA7D-FA38-4238-9FA7-159027739BDE}.Release|x86.ActiveCfg = Release|Win32
 		{7192DA7D-FA38-4238-9FA7-159027739BDE}.Release|x86.Build.0 = Release|Win32
+		{EABD5275-4A0C-4DD1-B862-ECBCFB8F9D85}.Debug|x64.ActiveCfg = Debug|x64
+		{EABD5275-4A0C-4DD1-B862-ECBCFB8F9D85}.Debug|x64.Build.0 = Debug|x64
+		{EABD5275-4A0C-4DD1-B862-ECBCFB8F9D85}.Debug|x86.ActiveCfg = Debug|Win32
+		{EABD5275-4A0C-4DD1-B862-ECBCFB8F9D85}.Debug|x86.Build.0 = Debug|Win32
+		{EABD5275-4A0C-4DD1-B862-ECBCFB8F9D85}.Release|x64.ActiveCfg = Release|x64
+		{EABD5275-4A0C-4DD1-B862-ECBCFB8F9D85}.Release|x64.Build.0 = Release|x64
+		{EABD5275-4A0C-4DD1-B862-ECBCFB8F9D85}.Release|x86.ActiveCfg = Release|Win32
+		{EABD5275-4A0C-4DD1-B862-ECBCFB8F9D85}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
