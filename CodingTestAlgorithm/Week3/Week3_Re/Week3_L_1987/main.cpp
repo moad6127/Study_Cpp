@@ -42,7 +42,6 @@ int main()
 			a[i][j] = s[j];
 		}
 	}
-	set<char> ss;
 	dfs(0, 0,1);
 	cout << result;
 }
