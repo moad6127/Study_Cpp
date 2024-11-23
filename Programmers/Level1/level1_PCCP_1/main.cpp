@@ -33,6 +33,10 @@ string solution(string video_len, string pos, string op_start, string op_end, ve
     }
     for (auto e : commands)
     {
+        if (POS >= opStr && POS <= opEnd)
+        {
+            POS = opEnd;
+        }
         if (e == "prev")
         {
             POS -= 10;
