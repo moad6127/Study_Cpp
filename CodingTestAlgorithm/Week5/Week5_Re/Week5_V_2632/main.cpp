@@ -19,7 +19,7 @@ void Make(int n, int pSum[], map<int, int>& m)
 			if (size == n)
 			{
 				break;
-			}
+			} 
 		}
 	}
 }
